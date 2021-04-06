@@ -5,45 +5,44 @@ namespace ConsoleApp1
 {
     class Program
     {
+        public static bool judgeSquareSum(long n)
+        {
+            if (n < 0)
+            {
+                return false;
+            }
+            for (int i = 2; i * i <= n; i++)
+            {
+                int count = 0;
+                if (n % i == 0)
+                {
+                    while (n % i == 0)
+                    {
+                        count++;
+                        n /= i;
+                    }
+                    if (i % 4 == 3 && count % 2 != 0)
+                        return false;
+                }
+            }
+            return n % 4 != 3;
+        }
+
         static void Main(string[] args)
         {
-            List<int> imputNum = new List<int>();
-            List<int> squeredIntegers = new List<int>();
+            List<long> imputNum = new List<long>();
+            //List<long> squeredNum = new List<long>();
             string wejscie = Console.ReadLine();
             int firstNum = Int32.Parse(wejscie);
             for (int i = 0; i < firstNum; i++)
             {
-                imputNum.Add( Int32.Parse(Console.ReadLine()));
+                imputNum.Add( Int64.Parse(Console.ReadLine()));
             }
-            //int[] dane = Array.ConvertAll<string, int>(wejscie.Split(" "), int.Parse);
-            //Console.WriteLine(string.Join(" ", squeredIntegers));
             for (int i = 0; i < imputNum.Count ; i++)
             {
-                for (int a = 0; a <= imputNum[i]; a++)
-                {
-                    if((a*a) > imputNum[i])
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        squeredIntegers.Add(a*a);
-                    }
-                }
-                bool isMadeOftwoSqueres = false;
-                for (int b = 0; b < squeredIntegers.Count; b++)
-                {
-                    for (int c = b; c < squeredIntegers.Count; c++)
-                    {
-                        int sumOfSqueres = squeredIntegers[b] + squeredIntegers[c];
-                        if (sumOfSqueres == imputNum[i]) 
-                        {
-                            isMadeOftwoSqueres = true;
-                            break;
-                        }
-                    }
-                }
-                if (isMadeOftwoSqueres == true)
+
+                bool isSumof2Sqr = judgeSquareSum(imputNum[i]);
+                if (isSumof2Sqr == true)
                 {
                     Console.WriteLine("Yes");
                 }
