@@ -4,6 +4,17 @@ namespace objStożka2
 {
     class Program
     {
+        public static int toUpperIntBoundary(double n)
+        {
+            if(n % 1 == 0)
+            {
+                return (int)n;
+            }
+            else
+            {
+                return ((int)n + 1);
+            }
+        }
         static void Main(string[] args)
         {
             string imput = Console.ReadLine();
@@ -14,14 +25,14 @@ namespace objStożka2
             {
                 Console.WriteLine("ujemny argument");
             }
-            else if(R == 0 || L <= R)
+            else if(L < R)
             {
                 Console.WriteLine("obiekt nie istnieje");
             }
             else
             {
                 double V = (Math.PI * (R * R) * Math.Sqrt((L * L) - (R * R))) / 3.0;
-                Console.WriteLine(/*Math.Round(V,MidpointRounding.AwayFromZero)*/ (int)V);
+                Console.WriteLine( (int)V+" "+ toUpperIntBoundary(V));
             }
         }
     }
